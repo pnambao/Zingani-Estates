@@ -1,0 +1,41 @@
+#slideShow {
+overflow: hidden;
+height: 400px;
+width: 500px;
+margin: 0 auto;
+}
+
+.slide {
+    display: flex;
+    justify-content: left;
+    height: 400px;
+    width: 500px;
+}
+
+.wrapper {
+    width: calc(500px *4);
+    animation: slide 5s ease infinite;
+}
+
+@keyframes slide{
+
+    20%{
+        margin-left: 0px;
+    }
+    40%{
+        margin-left: calc(-500px * 1);
+    }
+    60%{
+        margin-left: calc(-500px *2);
+    }
+    80%{
+        margin-left: calc(-500px * 3);
+    }
+}
+
+#footer {
+   display: flex;
+   flex-direction: row;
+   flex-flow: row wrap;
+   justify-content: space-evenly;
+}

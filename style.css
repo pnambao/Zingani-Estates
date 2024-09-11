@@ -1,3 +1,8 @@
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
+
 #slideShow {
 overflow: hidden;
 height: 400px;
@@ -5,33 +10,7 @@ width: 500px;
 margin: 0 auto;
 }
 
-.slide {
-    display: flex;
-    justify-content: left;
-    height: 400px;
-    width: 500px;
-}
 
-.wrapper {
-    width: calc(500px *4);
-    animation: slide 5s ease infinite;
-}
-
-@keyframes slide{
-
-    20%{
-        margin-left: 0px;
-    }
-    40%{
-        margin-left: calc(-500px * 1);
-    }
-    60%{
-        margin-left: calc(-500px *2);
-    }
-    80%{
-        margin-left: calc(-500px * 3);
-    }
-}
 
 #footer {
    display: flex;
@@ -39,3 +18,13 @@ margin: 0 auto;
    flex-flow: row wrap;
    justify-content: space-evenly;
 }
+
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+
+  @media only screen and (max-width: 300px) {
+    .text {font-size: 11px}
+  }

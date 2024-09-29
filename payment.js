@@ -23,8 +23,8 @@ async function initializeStripe() {
 
       const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-          card: cardElement,
-        },
+          card: cardElement
+        }
       });
 
       if (error) {
@@ -35,7 +35,11 @@ async function initializeStripe() {
     });
   }
 
-  document.getElementById('payment-form').addEventListener('submit', (e) => {
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeStripe();
+  });
+
+ /* document.getElementById('payment-form').addEventListener('submit', (e) => {
     e.preventDefault();
     initializeStripe(); // Call to initiate Stripe payment flow
-  });
+  }); */

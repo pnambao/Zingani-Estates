@@ -10,6 +10,10 @@ const stripe = Stripe("sk_test_51Q390LIVlokKHLiOBMWfBQlaFe36TlER25jBqR3oMH3msHwd
 app.use(express.json());
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the Stripe Payment Demo!');
+  });
+
 //APT route to create payment intent
 app.post('/api/create-payment-intent',async (req, res) => {
     const {amount} =req.body;
@@ -31,6 +35,6 @@ app.post('/api/create-payment-intent',async (req, res) => {
 
 const PORT =3000;
 app.listen (PORT, () => {
-    console.log(`server running on http://localhost:${POST}`)
+    console.log(`server running on http://localhost:${PORT}`)
 });
 

@@ -10,9 +10,9 @@ const stripe = Stripe("sk_test_51Q390LIVlokKHLiOBMWfBQlaFe36TlER25jBqR3oMH3msHwd
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
     res.send('Welcome to the Stripe Payment Demo!');
-  });
+  });*/
 
 //APT route to create payment intent
 app.post('/api/create-payment-intent',async (req, res) => {
@@ -21,10 +21,10 @@ app.post('/api/create-payment-intent',async (req, res) => {
     try{
         const paymentintent= await stripe.paymentIntents.create({
             amount: amount * 100,
-            currency:'kwacha',
+            currency:'zmw',
         });
 
-        res.json({clientSecret:paymentintent.client_secret});
+        res.json({clientSecret: paymentIntent.client_secret });
     } catch (error){
         res.status(500).json({error: "Payment failed", details: error.message});
     }
@@ -33,7 +33,7 @@ app.post('/api/create-payment-intent',async (req, res) => {
 
 //Starting the server
 
-const PORT =3000;
+const PORT = 3000;
 app.listen (PORT, () => {
     console.log(`server running on http://localhost:${PORT}`)
 });

@@ -28,4 +28,9 @@ app.post('/api/create-payment-intent',async (req, res) => {
 });
 
 //Starting the server
-let pay = document.getElementById("payment");
+
+const PORT =3000;
+app.listen (PORT, () => {
+    console.log(`server running on http://localhost:${POST}`)
+});
+

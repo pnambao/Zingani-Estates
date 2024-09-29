@@ -1,0 +1,1 @@
+let pay = document.getElementById("payment");

@@ -15,13 +15,13 @@ app.use(cors());
   });*/
 
 //APT route to create payment intent
-app.post('/api/create-payment-intent',async (req, res) => {
+app.post('/api/create-payment-intent', async (req, res) => {
     const {amount} =req.body;
 
     try{
-        const paymentintent= await stripe.paymentIntents.create({
+        const paymentIntent= await stripe.paymentIntents.create({
             amount: amount * 100,
-            currency:'zmw',
+            currency:'kwacha',
         });
 
         res.json({clientSecret: paymentIntent.client_secret });

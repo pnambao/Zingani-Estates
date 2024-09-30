@@ -1,4 +1,4 @@
-const stripe = Stripe("sk_test_51Q390LIVlokKHLiOBMWfBQlaFe36TlER25jBqR3oMH3msHwdk9oz7Ki0dUfNDFrZweSsEotbHTAvpEGsilKLAA7V00l0iWiDuY");
+const stripe = Stripe("pk_test_51Q390LIVlokKHLiOeJrXaLoHnor6TH1Uw0xRWrVgi9YVp7O9jJhp2Ww50I4aC32J9Oh7H9cy1f28iBVJwjNlCTD200ey6G5bvp");
 let elements;
 
 async function initializeStripe() {

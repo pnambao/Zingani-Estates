@@ -1,3 +1,5 @@
+/*
+
 const express = require("express");
 const Stripe = require("stripe");
 const cors = require("cors"); 
@@ -10,11 +12,11 @@ const stripe = Stripe("sk_test_51Q390LIVlokKHLiOBMWfBQlaFe36TlER25jBqR3oMH3msHwd
 app.use(express.json());
 app.use(cors());
 
-/*app.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Welcome to the Stripe Payment Demo!');
-  });*/
+  });
 
-//APT route to create payment intent
+
 app.post('/api/create-payment-intent', async (req, res) => {
     const {amount} =req.body;
 
@@ -38,3 +40,4 @@ app.listen (PORT, () => {
     console.log(`server running on http://localhost:${PORT}`)
 });
 
+*/

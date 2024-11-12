@@ -2,7 +2,7 @@
   "name": "zingani-estates",
   "version": "1.0.0",
   "description": "A basic rental management app for a small business.",
-  "main": "app.js",
+  "main": "server/index.js",
   "dependencies": {
     "call-bind": "^1.0.7",
     "cors": "^2.8.5",
@@ -27,9 +27,15 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "npm start --prefix client",
+    "server": "nodemon server/index.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "nodemon": "^3.1.7"
+  }
 }

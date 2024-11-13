@@ -4,6 +4,7 @@
   "description": "A basic rental management app for a small business.",
   "main": "server/index.js",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "call-bind": "^1.0.7",
     "cors": "^2.8.5",
     "define-data-property": "^1.1.4",

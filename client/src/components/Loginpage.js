@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/login.css";
+import Slideshow from "./Slideshow";
 
 const LoginPage = () => {
   return (
@@ -16,20 +17,7 @@ const LoginPage = () => {
           <div className="row">
             {/* slideshow*/}
             <div id="slideShow" className="col-md-6">
-              <div className="slideNumber">
-                <img src="../assets/images/placekitten.webp" alt="a cat" />
-              </div>
-              <div className="slideNumber">
-                <img src="../assets/images/placebear-1280x720.webp" alt="bears" />
-              </div>
-              <div className="slideNumber">
-                <img
-                  src="../assets/images/bacon-mockup-1280x720.webp" alt="meat"/>
-              </div>
-              <div className="slideNumber">
-                <img
-                  src="../assets/images/lorem-picsum-1280x720.webp"alt="place"/>
-              </div>
+             <Slideshow/>
             </div>
             
             <div className="col-md-6">

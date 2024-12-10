@@ -23,4 +23,4 @@ const createProperty = async (req, res) => {
     }
 };
 
-module.exports = { getAllProperties, createProperty};
+module.exports = { getAllProperties, createProperty };

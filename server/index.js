@@ -4,6 +4,9 @@ const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 
+app.use(cors());
+app.use(express.json());
+
 //importing routes
 const propertyRoutes = require("./routes/propertyRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
@@ -17,10 +20,6 @@ app.use("/api/tenants", tenantRoutes);
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true })
 .then(()=> console.log("MongoDB connect"))
 .catch((err)=> console.log("Error connecting to MongoDB:", err));
-
-app.use(cors());
-app.use(express.json());
-
 
 app.get("/", (req, res)=>{
     res.send("Server is Up!");

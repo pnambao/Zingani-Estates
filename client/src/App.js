@@ -1,12 +1,18 @@
-import './App.css';
+import React from "react";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import LoginPage from './components/Loginpage';
+import Dashboard from "./components/Dashboard";
+
 
 
 function App() {
   return (
-    <div className="App">
-      <LoginPage />
-    </div>
+      <Router>
+        <Routes>
+          <Route path="/" element ={<LoginPage/>} />
+          <Route path="/dashboard" element ={<Dashboard/>} />
+        </Routes>
+      </Router>
   );
 }
 

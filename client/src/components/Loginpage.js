@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/login.css";
 import Slideshow from "./Slideshow";
@@ -7,10 +8,35 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async (e) =>{
     e.preventDefault();
-    console.log("email:", email, "password:", password)
+    console.log("email:", email, "password:", password);
+
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers:{
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password}),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("login successful", data);
+        navigate("/dashboard");
+      } else {
+        setError(data.message || "An error occured");
+      }
+
+    } catch (error) {
+      setError(" Failed to connect to server");
+      console.error("Login error:", error);
+    }
   };
 
 
@@ -18,7 +44,7 @@ const LoginPage = () => {
     <div>
       <header className="container-fluid">
         <h1 className="display-1"> Zingani Ian Phiri Estates</h1>
-        <h3> Rental payments made easy just for you!</h3>
+        <h3> Rental management made easy just for you!</h3>
         <hr />
       </header>
 
@@ -65,11 +91,7 @@ const LoginPage = () => {
       </main>
       <hr/>
     <footer id="footer" className="container-fluid" >
-    <p>&copy; 2024 by Panje Nambao all rights reserved</p>
-        <p>
-          Contact:{" "}
-          <a href="mailto:panjenambao@gmail.com">Email me</a>
-        </p>
+    <p>&copy; 2024 by Zingani Estates</p>
     </footer>
     </div>
   );

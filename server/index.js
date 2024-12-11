@@ -11,10 +11,12 @@ app.use(express.json());
 const propertyRoutes = require("./routes/propertyRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const tenantRoutes = require("./routes/tenantRoutes");
+const authRoutes = require("./routes/authRoutes");
 //using routes
 app.use("/api/properties", propertyRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/tenants", tenantRoutes);
+app.use("/api/auth", authRoutes);
 
 //connection to MongoDB
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true })

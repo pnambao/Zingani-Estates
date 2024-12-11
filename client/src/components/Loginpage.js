@@ -1,9 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/login.css";
 import Slideshow from "./Slideshow";
 
 const LoginPage = () => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    console.log("email:", email, "password:", password)
+  };
+
+
   return (
     <div>
       <header className="container-fluid">
@@ -22,7 +32,7 @@ const LoginPage = () => {
             
             <div className="col-md-6">
                 <h4> Login Here!</h4>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="youremail" className="form-label"> Enter your email address </label>
                         <input
@@ -30,6 +40,9 @@ const LoginPage = () => {
                         className="form-control"
                         id="youremail"
                         aria-describedby="emailHelp"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
                         />
                     </div>
                     <div className="mb-3">
@@ -38,6 +51,9 @@ const LoginPage = () => {
                          type="password"
                          className="form-control"
                          id="yourpassword"
+                         value={password}
+                         onChange={(e) => setPassword(e.target.value)}
+                          required
                         />
                     </div>
                     <button  type="submit" className="btn btn-primary" > Submit </button>
@@ -47,7 +63,6 @@ const LoginPage = () => {
           </div>
         </div>
       </main>
-
       <hr/>
     <footer id="footer" className="container-fluid" >
     <p>&copy; 2024 by Panje Nambao all rights reserved</p>

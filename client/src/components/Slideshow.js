@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 const Slideshow = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const slides = [
-        { src: "../assets/images/placekitten.webp", alt: "A cat" },
-        { src: "../assets/images/placebear-1280x720.webp", alt: "Bears" },
-        { src: "/assets/images/bacon-mockup-1280x720.webp", alt: "Meat" },
-        { src: "../assets/images/lorem-picsum-1280x720.webp", alt: "Place" },
+        { src: "/assets/placekitten.webp", alt: "A cat" },
+        { src: "/assets/placebear-1280x720.webp", alt: "Bears" },
+        { src: "/assets/bacon-mockup-1280x720.webp", alt: "Meat" },
+        { src: "/assets/lorem-picsum-1280x720.webp", alt: "Place" },
     ];
 
     useEffect(() => {

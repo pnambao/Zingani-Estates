@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AddTenant from "./AddTenant";
 
 const Tenants = () => {
   const [tenants, setTenants] = useState([]);
@@ -14,11 +15,14 @@ const Tenants = () => {
     fetchTenants();
   }, []);
 
+  const handleCreateTenant = (newTenant) => { setTenants([...tenants, newTenant]); };
+
   return (
     <div>
       <Navbar />
       <div className="container mt-4">
         <h1>Tenants</h1>
+        <AddTenant onCreate={handleCreateTenant}  />
         {tenants.length > 0 ? (
           <table className="table table-striped">
             <thead>

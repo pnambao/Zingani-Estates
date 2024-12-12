@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react";
 const Slideshow = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const slides = [
-        { src: "/assets/placekitten.webp", alt: "A cat" },
-        { src: "/assets/placebear-1280x720.webp", alt: "Bears" },
-        { src: "/assets/bacon-mockup-1280x720.webp", alt: "Meat" },
-        { src: "/assets/lorem-picsum-1280x720.webp", alt: "Place" },
+        { src: "/assets/slide1.jpg", alt: "interior1" },
+        { src: "/assets/slide2.jpg", alt: "interior2" },
+        { src: "/assets/slide3.jpg", alt: "interior3" },
     ];
 
     useEffect(() => {
@@ -17,15 +16,17 @@ const Slideshow = () => {
     }, [slides.length]);
 
     return (
-        <div id="slideShow">
+        <div id="slideShow" className ="carousel slide carousel-fade">
             {slides.map((slide, index) => (
-                <div
+                <div className="carousel-inner">
+                <div className="carousel-item active  "
                     key={index}
                     style={{
                         display: index === currentSlide ? "block" : "none",
                     }}
                 >
-                    <img src={slide.src} alt={slide.alt} style={{ width: "100%" }} />
+                    <img className="d-block w-100"  src={slide.src} alt={slide.alt} style={{ width: "100%" }} />
+                </div>
                 </div>
             ))}
         </div>

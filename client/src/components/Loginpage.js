@@ -90,7 +90,7 @@ const LoginPage = () => {
         </div>
       </main>
       <hr/>
-    <footer id="footer" className="container-fluid" >
+    <footer id="footer" >
     <p>&copy; 2024 by Zingani Estates</p>
     </footer>
     </div>

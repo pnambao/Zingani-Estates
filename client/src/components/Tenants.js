@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const Tenants = () => {
   const [tenants, setTenants] = useState([]);
   const [payments, setPayments] = useState([]);
+  const [properties, setProperties] = useState([]);
 
   useEffect(() => {
     const fetchTenants = async () => {
@@ -39,6 +40,22 @@ const Tenants = () => {
     fetchPayments();
   }, []);
 
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/properties");
+        if (!response.ok) {
+          throw new Error("Failed to fetch properties");
+        }
+        const data = await response.json();
+        setProperties(data);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+    fetchProperties();
+  }, []);
+
   // Merge payments into tenants
   const mergedTenants = tenants.map(tenant => {
     const tenantPayments = payments.filter(payment => payment.tenantId === tenant._id);
@@ -49,6 +66,21 @@ const Tenants = () => {
     setTenants([...tenants, newTenant]);
   };
 
+  const handleDeleteTenant = async (tenantId) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/tenants/${tenantId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setTenants(tenants.filter(tenant => tenant._id !== tenantId));
+      } else {
+        console.error("Failed to delete tenant");
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -57,7 +89,7 @@ const Tenants = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-3">
-              <AddTenant onCreate={handleCreateTenant} />
+              <AddTenant onCreate={handleCreateTenant} properties={properties} />
             </div>
             <div className="col-md-9 table-responsive">
               {mergedTenants.length > 0 ? (
@@ -68,6 +100,7 @@ const Tenants = () => {
                       <th>Email</th>
                       <th>Property</th>
                       <th>Payment History</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -92,6 +125,14 @@ const Tenants = () => {
                           ) : (
                             "No payments made"
                           )}
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => handleDeleteTenant(tenant._id)}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                     ))}

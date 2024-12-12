@@ -12,9 +12,9 @@ const getAllPayments = async (req, res) => {
 
 //Create payment
 const createPayment = async(req, res) =>{
-    const {amount, tenantId, propertyId, status} = req.body;
+    const {amount, tenantId, propertyId, status, date} = req.body;
     try{
-        const newPayment = new Payment({ amount, tenantId, propertyId, status});
+        const newPayment = new Payment({ amount, tenantId, propertyId, status, date});
         await newPayment.save();
         res.status(201).json(newPayment);
     }catch(err){

@@ -24,7 +24,7 @@ const getAllTenants = async (req, res) => {
 const createTenant = async (req, res) => {
     const { name, email, propertyId } = req.body;
     try{
-        const newTenant = new Tenant({name, email, propertyId});
+        const newTenant = new Tenant({name, email, propertyId: propertyId || null});
         await newTenant.save();
         res.status(201).json(newTenant);
     } catch (err){
@@ -41,6 +41,10 @@ const deleteTenant = async (req, res) => {
         }
 
         await Payment.deleteMany({ tenantId: req.params.id });
+        // Update the property to set it as vacant
+        if (tenant.propertyId) {
+            await Property.findByIdAndUpdate(tenant.propertyId, { tenantId: null, isBooked: false });
+        }
         res.status(200).json({ message: "Tenant and their payment history deleted successfully" });
     } catch (err){
         res.status(500).json({ message: err.message });

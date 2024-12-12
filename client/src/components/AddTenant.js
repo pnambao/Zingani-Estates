@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const AddTenant = ({ onCreate }) => {
+const AddTenant = ({ onCreate, properties }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [propertyId, setPropertyId] = useState("");
@@ -9,7 +9,7 @@ const AddTenant = ({ onCreate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newTenant = { name, email, propertyId };
+    const newTenant = { name, email, propertyId: propertyId || null };
 
     const response = await fetch("http://localhost:8080/api/tenants", {
       method: "POST",
@@ -22,6 +22,18 @@ const AddTenant = ({ onCreate }) => {
     if (response.ok) {
       const createdTenant = await response.json();
       onCreate(createdTenant);
+
+      // If a property is selected, assign the tenant to the property
+      if (propertyId) {
+        await fetch("http://localhost:8080/api/tenants/assign", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ tenantId: createdTenant._id, propertyId }),
+        });
+      }
+
       // Reset form
       setName("");
       setEmail("");
@@ -33,7 +45,7 @@ const AddTenant = ({ onCreate }) => {
 
   return (
     <div>
-    <h2>Add Tenant</h2>
+      <h2>Add Tenant</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
@@ -58,14 +70,36 @@ const AddTenant = ({ onCreate }) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="propertyId">Property ID:</label>
-          <input
-            type="text"
-            id="propertyId"
-            className="form-control"
-            value={propertyId}
-            onChange={(e) => setPropertyId(e.target.value)}
-          />
+          <label>Assign Property:</label>
+          {properties.map((property) => (
+            <div key={property._id} className="form-check">
+              <input
+                type="radio"
+                className="form-check-input"
+                id={property._id}
+                name="propertyId"
+                value={property._id}
+                onChange={(e) => setPropertyId(e.target.value)}
+              />
+              <label className="form-check-label" htmlFor={property._id}>
+                {property.name}
+              </label>
+            </div>
+          ))}
+          <div className="form-check">
+            <input
+              type="radio"
+              className="form-check-input"
+              id="unassigned"
+              name="propertyId"
+              value=""
+              onChange={(e) => setPropertyId("")}
+              defaultChecked
+            />
+            <label className="form-check-label" htmlFor="unassigned">
+              Unassigned
+            </label>
+          </div>
         </div>
         <button type="submit" className="btn btn-primary">
           Add Tenant

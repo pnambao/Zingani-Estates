@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./Navbar";
 
 const AddTenant = ({ onCreate }) => {
   const [name, setName] = useState("");
@@ -34,8 +33,7 @@ const AddTenant = ({ onCreate }) => {
 
   return (
     <div>
-    <Navbar/>
-    <h1 className="mb-4">Add Tenant</h1>
+    <h2>Add Tenant</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name:</label>

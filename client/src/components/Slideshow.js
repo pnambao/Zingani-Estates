@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/slide.css"
 
 const Slideshow = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -16,16 +18,17 @@ const Slideshow = () => {
     }, [slides.length]);
 
     return (
-        <div id="slideShow" className ="carousel slide carousel-fade">
+        <div id="slideShow" className ="">
             {slides.map((slide, index) => (
-                <div className="carousel-inner">
-                <div className="carousel-item active  "
+                <div className="">
+                <div className=""
                     key={index}
                     style={{
                         display: index === currentSlide ? "block" : "none",
                     }}
                 >
-                    <img className="d-block w-100"  src={slide.src} alt={slide.alt} style={{ width: "100%" }} />
+                    <img className="rounded mx-auto d-block"  src={slide.src} alt={slide.alt} style={{ width: "100%" }} />
+                    
                 </div>
                 </div>
             ))}

@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const PropertyCard = ({ property, onDetailsClick}) => {
+const PropertyCard = ({ property}) => {
     return(
         <div className=" card mb-3">
             <div className=" card-body">
@@ -10,9 +10,7 @@ const PropertyCard = ({ property, onDetailsClick}) => {
                     price: ${property.rent} <br/>
                     status: {property.isBooked ? "Occupied" : "Vacant"}
                 </p>
-                <button className=" btn btn-primary" onClick={()=> onDetailsClick(property.id)} >
-                    Details
-                </button>
+                
             </div>
         </div>
     );

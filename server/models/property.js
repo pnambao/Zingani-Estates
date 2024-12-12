@@ -9,4 +9,4 @@ const propertySchema = new mongoose.Schema({
     image: {type: String, default: ""},
 }, {timestamps: true});
 
-module.exports = mongoose.model('property' , propertySchema);
+module.exports = mongoose.model("Property" , propertySchema);

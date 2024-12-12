@@ -4,11 +4,19 @@ const Property = require("../models/property")
 
 //get all tenants
 const getAllTenants = async (req, res) => {
-    try{
-        const tenants = await Tenant.find().populate("propertyId").populate("paymentHistory");
+    try {
+        const tenants = await Tenant.find()
+            .populate("propertyId")
+            .populate({
+                path: "paymentHistory",
+                populate: {
+                    path: "tenantId propertyId",
+                    select: "name rent"
+                }
+            });
         res.json(tenants);
-    } catch (err){
-        res.status(500).json({ message: err.message});
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
 };
 

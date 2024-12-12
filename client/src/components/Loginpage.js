@@ -62,6 +62,7 @@ const LoginPage = () => {
                     <div className="mb-3">
                         <label htmlFor="youremail" className="form-label"> Enter your email address </label>
                         <input
+                        placeholder="example@email.com"
                         type="email"
                         className="form-control"
                         id="youremail"
@@ -74,6 +75,7 @@ const LoginPage = () => {
                     <div className="mb-3">
                         <label htmlFor="yourpassword" className="form-label" >  Enter your password </label>
                         <input
+                        placeholder="*******"
                          type="password"
                          className="form-control"
                          id="yourpassword"
@@ -89,7 +91,7 @@ const LoginPage = () => {
           </div>
         </div>
       </main>
-      <hr/>
+
     <footer id="footer" >
     <p>&copy; 2024 by Zingani Estates</p>
     </footer>
